@@ -20,7 +20,7 @@
     .content {
       width: 70%;
       height: 4000px;
-      margin-top: 100px;
+      margin-top: 70px;
     }
   }
 </style>

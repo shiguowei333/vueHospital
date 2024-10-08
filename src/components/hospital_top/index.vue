@@ -22,13 +22,14 @@
     position: fixed;
     z-index: 999;
     width: 100%;
-    height: 100px;
+    height: 70px;
     display: flex;
     justify-content: center;
+    background-color: #fff;
 
     .content {
       width: 70%;
-      height: 100px;
+      height: 70px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -37,7 +38,7 @@
         display: flex;
         align-items: center;
         img {
-          height: 80px;
+          height: 60px;
           margin-right: 20px;
         }
         p {
