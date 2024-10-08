@@ -10,7 +10,7 @@
         <Level></Level>
         <Region></Region>
         <div class="cardList">
-          <Card v-for="(item, index) in 10" :key="index" class="item"></Card>
+          <Card v-for="(item) in hospitalInfoArr" :key="item.id" class="item" :hospitalInfo="item"></Card>
         </div>
         <!-- 分页器 -->
         <div class="demo-pagination-block">
@@ -19,7 +19,8 @@
             v-model:page-size="pageSize"
             :page-sizes="[10, 20, 50, 100]"
             layout="->, prev, pager, next, sizes, total"
-            :total="13"
+            :total="total"
+            @change="change"
           />
         </div>
       </el-col>
@@ -34,10 +35,31 @@
   import Level from './level/index.vue'
   import Region from './region/index.vue'
   import Card from './card/index.vue'
-  import {ref} from 'vue'
+  import {ref, onMounted} from 'vue'
+  import { requestHospital } from '@/api/home'
 
   let pageNo = ref(1)
   let pageSize = ref(10)
+
+  let hospitalInfoArr = ref([])
+
+  let total = ref(0)
+
+  onMounted(() => {
+    getHospitalInfo()
+  })
+
+  const getHospitalInfo = async() => {
+    let resp = await requestHospital(pageNo.value,pageSize.value)
+    if(resp.code === 200) {
+      hospitalInfoArr.value = resp.data.content
+      total.value = resp.data.totalElements
+    }
+  }
+
+  const change = (pageNo, pageSize) => {
+    getHospitalInfo()
+  }
 </script>
 
 <style scoped lang="less">

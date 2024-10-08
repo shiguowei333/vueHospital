@@ -9,7 +9,6 @@
 </template>
 
 <script setup>
-
 </script>
 
 <style scoped lang="less">
@@ -19,7 +18,6 @@
     align-items: center;
     .content {
       width: 70%;
-      height: 4000px;
       margin-top: 70px;
     }
   }

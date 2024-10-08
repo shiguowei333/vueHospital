@@ -25,6 +25,7 @@
     background-color: #f0f2f5;
     display: flex;
     justify-content: center;
+    margin-top: 20px;
     .content {
       width: 80%;
       height: 100px;
