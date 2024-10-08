@@ -20,7 +20,7 @@
     justify-content: center;
     align-items: center;
     .searchBox {
-      width:1200px;
+      width:800px;
       display: flex;
       justify-content: center;
       align-items: center;
