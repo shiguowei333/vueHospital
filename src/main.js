@@ -12,6 +12,7 @@ import router from '@/router'
 //引入UI组件库
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 const app = createApp(App)
 
@@ -19,6 +20,10 @@ app.component('HospitalTop', HospitalTop)
 app.component('HospitalBottom', HospitalBottom)
 
 app.use(router)
+app.use(ElementPlus, {
+  locale: zhCn,
+})
 app.use(ElementPlus)
+
 
 app.mount('#app')
