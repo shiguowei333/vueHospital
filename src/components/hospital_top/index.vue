@@ -26,7 +26,7 @@
     display: flex;
     justify-content: center;
     background-color: #fff;
-
+    box-shadow: 0 1px 5px rgb(218, 211, 211);
     .content {
       width: 70%;
       height: 70px;
