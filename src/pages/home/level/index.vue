@@ -5,17 +5,27 @@
         <div class="left">等级：</div>
         <ul class="hospital">
           <li class="active">全部</li>
-          <li>三级甲等</li>
-          <li>三级甲等</li>
-          <li>三级甲等</li>
-          <li>三级甲等</li>
+          <li v-for="item in levelList" :key="item.value">{{item.name}}</li>
         </ul>
       </div>
     </div>
 </template>
   
 <script setup>
-  
+  import { requestHospitalLevel } from '@/api/home'
+  import { ref, onMounted } from 'vue'
+
+  const levelList = ref([])
+
+  onMounted(() => {
+    getLevel()
+  })
+
+  const getLevel = async () => {
+    let result = await requestHospitalLevel('HosType')
+    levelList.value = result.data
+    console.log(levelList.value)
+  }
 </script>
   
 <style scoped lang="less">
