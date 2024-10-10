@@ -1,5 +1,5 @@
 <template>
-  <el-card style="max-width: 480px" shadow="hover">
+  <el-card style="max-width: 480px" shadow="hover" @click="goDetail">
     <div class="content">
       <div class="left">
         <div class="hospitalName">{{hospitalInfo.hosname}}</div>
@@ -22,7 +22,14 @@
 </template>
   
 <script setup>
+  import { useRouter } from 'vue-router'
   defineProps(['hospitalInfo'])
+
+  const $router = useRouter()
+
+  const goDetail = () => {
+    $router.push({path: '/hospital'})
+  }
 </script>
   
 <style scoped lang="less">

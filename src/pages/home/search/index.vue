@@ -1,7 +1,14 @@
 <template>
   <div class="search">
     <div class="searchBox">
-      <el-autocomplete clearable placeholder="请输入医院名称"/>
+      <el-autocomplete 
+      clearable 
+      placeholder="请输入医院名称"
+      v-model="key"
+      :fetch-suggestions="fetchSuggestions"
+      :trigger-on-focus="false"
+      @select="goDetail"
+      />
       <el-button type="primary" size="large" :icon="Search">搜索</el-button>
     </div>
   </div>
@@ -9,6 +16,27 @@
 
 <script setup>
   import { Search } from '@element-plus/icons-vue'
+  import { ref } from 'vue'
+  import { requestHospitalName } from '@/api/home'
+  import { useRouter } from 'vue-router'
+
+  let key = ref('')
+  let $router = useRouter()
+
+  const fetchSuggestions = async (keyWord,cb) => {
+    let result = await requestHospitalName(keyWord)
+    let showData = result.data.map((item) => {
+      return {
+        value: item.hosname,
+        hoscode: item.hoscode
+      }
+    })
+    cb(showData)
+  }
+
+  const goDetail = (item) => {
+    $router.push({path: '/hospital'})
+  }
 </script>
 
 <style scoped lang="less">
