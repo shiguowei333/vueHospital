@@ -2,6 +2,6 @@
 import request from "@/utils/request";
 
 //获取医院信息
-export const requestHospital =  (page, limit) => request.get(`hosp/hospital/${page}/${limit}`)
+export const requestHospital =  (page, limit, hostype, districtCode) => request.get(`hosp/hospital/${page}/${limit}?hostype=${hostype}&districtCode=${districtCode}`)
 //获取医院等级信息
 export const requestHospitalLevelOrRegion = (dictCode) => request.get(`cmn/dict/findByDictCode/${dictCode}`)

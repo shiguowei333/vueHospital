@@ -7,8 +7,8 @@
     <!-- 底部医院结构 -->
     <el-row :gutter="20">
       <el-col :span="20">
-        <Level></Level>
-        <Region></Region>
+        <Level @getHospitalLevel="getHospitalLevel"></Level>
+        <Region @getHospitalRegion="getHospitalRegion"></Region>
         <div class="cardList">
           <Card v-for="(item) in hospitalInfoArr" :key="item.id" class="item" :hospitalInfo="item"></Card>
         </div>
@@ -37,9 +37,12 @@
   import Card from './card/index.vue'
   import {ref, onMounted} from 'vue'
   import { requestHospital } from '@/api/home'
-
+  //分页数据
   let pageNo = ref(1)
   let pageSize = ref(10)
+  //地区/等级信息
+  let hostype = ref('')
+  let districtCode = ref('')
 
   let hospitalInfoArr = ref([])
 
@@ -51,7 +54,7 @@
 
   //获取医院数据，渲染到响应式
   const getHospitalInfo = async() => {
-    let resp = await requestHospital(pageNo.value,pageSize.value)
+    let resp = await requestHospital(pageNo.value,pageSize.value,hostype.value,districtCode.value)
     if(resp.code === 200) {
       hospitalInfoArr.value = resp.data.content
       total.value = resp.data.totalElements
@@ -61,6 +64,16 @@
   //分页查询医院数据
   const change = () => {
     getHospitalInfo()
+  }
+
+  //子组件自定义事件获取医院等级
+  const getHospitalLevel = (level) => {
+    hostype.value = level
+  }
+
+  //子组件自定义事件获取医院地区编码
+  const getHospitalRegion = (code) => {
+    districtCode.value = code
   }
 </script>
 

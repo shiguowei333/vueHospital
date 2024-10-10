@@ -18,6 +18,9 @@
   import { requestHospitalLevelOrRegion } from '@/api/home'
   import { ref, onMounted } from 'vue'
 
+  //获取自定义事件触发函数
+  const $emit = defineEmits(['getHospitalLevel'])
+
   const regionlList = ref([])
 
   // 控制选择地区高亮效果
@@ -37,6 +40,7 @@
   //修改高亮显示效果
   const changeLightFlag = (value) => {
     regionLightFlag.value = value
+    $emit('getHospitalRegion',value)
   }
 </script>
   
