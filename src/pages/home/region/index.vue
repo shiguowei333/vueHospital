@@ -3,46 +3,38 @@
       <div class="content">
         <div class="left">地区：</div>
         <ul class="right">
-          <li class="active">全部</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
-          <li>昌平区</li>
+          <li :class="{active: regionLightFlag === ''}" @click="changeLightFlag('')" >全部</li>
+          <li v-for="item in regionlList" 
+          :key="item.value"
+          :class="{active: regionLightFlag === item.value}"
+          @click="changeLightFlag(item.value)"
+          >{{ item.name }}</li>
         </ul>
       </div>
     </div>
 </template>
   
 <script setup>
-  
+  import { requestHospitalLevelOrRegion } from '@/api/home'
+  import { ref, onMounted } from 'vue'
+
+  const regionlList = ref([])
+
+    // 控制选择地区高亮效果
+    let regionLightFlag = ref('')
+
+  onMounted(() => {
+    getRegion()
+  })
+
+  const getRegion = async () => {
+    let result = await requestHospitalLevelOrRegion('Beijin')
+    regionlList.value = result.data
+  }
+
+  const changeLightFlag = (value) => {
+    regionLightFlag.value = value
+  }
 </script>
   
 <style scoped lang="less">

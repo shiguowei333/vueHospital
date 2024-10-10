@@ -4,27 +4,39 @@
       <div class="content">
         <div class="left">等级：</div>
         <ul class="hospital">
-          <li class="active">全部</li>
-          <li v-for="item in levelList" :key="item.value">{{item.name}}</li>
+          <li :class="{active: levelLightFlag === ''}" @click="changeLightFlag('')" >全部</li>
+          <li v-for="item in levelList"
+          :key="item.value"
+          :class="{active: levelLightFlag === item.value}"
+          @click="changeLightFlag(item.value)"
+          >
+          {{item.name}}
+          </li>
         </ul>
       </div>
     </div>
 </template>
   
 <script setup>
-  import { requestHospitalLevel } from '@/api/home'
+  import { requestHospitalLevelOrRegion } from '@/api/home'
   import { ref, onMounted } from 'vue'
 
   const levelList = ref([])
+
+  // 控制选择等级高亮效果
+  let levelLightFlag = ref('')
 
   onMounted(() => {
     getLevel()
   })
 
   const getLevel = async () => {
-    let result = await requestHospitalLevel('HosType')
+    let result = await requestHospitalLevelOrRegion('HosType')
     levelList.value = result.data
-    console.log(levelList.value)
+  }
+
+  const changeLightFlag = (value) => {
+    levelLightFlag.value = value
   }
 </script>
   
