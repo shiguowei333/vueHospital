@@ -25,7 +25,9 @@
           />
         </div>
       </el-col>
-      <el-col :span="4">456</el-col>
+      <el-col :span="4">
+        <Tips></Tips>
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -36,6 +38,7 @@
   import Level from './level/index.vue'
   import Region from './region/index.vue'
   import Card from './card/index.vue'
+  import Tips from './tips/index.vue'
   import {ref, onMounted} from 'vue'
   import { requestHospital } from '@/api/home'
   //分页数据
