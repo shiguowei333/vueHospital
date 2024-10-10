@@ -6,15 +6,15 @@ export default createRouter({
   //管理路由
   routes: [
     {
-      path: '/home',
+      path: '/home',//医院首页路由组件
       component: () => import('@/pages/home/index.vue')
     },
     {
-      path: '/hospital',
+      path: '/hospital',//医院管理路由组件
       component: () => import('@/pages/hospital/index.vue')
     },
     {
-      path: '/',
+      path: '/',//首页重定向
       redirect: '/home'
     }
   ]

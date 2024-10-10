@@ -20,18 +20,21 @@
 
   const regionlList = ref([])
 
-    // 控制选择地区高亮效果
-    let regionLightFlag = ref('')
+  // 控制选择地区高亮效果
+  let regionLightFlag = ref('')
 
+  //初始化渲染地区列表数据
   onMounted(() => {
     getRegion()
   })
 
+  //获取地区列表数据，渲染响应式
   const getRegion = async () => {
     let result = await requestHospitalLevelOrRegion('Beijin')
     regionlList.value = result.data
   }
 
+  //修改高亮显示效果
   const changeLightFlag = (value) => {
     regionLightFlag.value = value
   }

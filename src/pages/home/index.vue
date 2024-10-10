@@ -49,6 +49,7 @@
     getHospitalInfo()
   })
 
+  //获取医院数据，渲染到响应式
   const getHospitalInfo = async() => {
     let resp = await requestHospital(pageNo.value,pageSize.value)
     if(resp.code === 200) {
@@ -57,7 +58,8 @@
     }
   }
 
-  const change = (pageNo, pageSize) => {
+  //分页查询医院数据
+  const change = () => {
     getHospitalInfo()
   }
 </script>

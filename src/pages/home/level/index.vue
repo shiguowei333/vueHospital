@@ -26,15 +26,18 @@
   // 控制选择等级高亮效果
   let levelLightFlag = ref('')
 
+  //初始化等级列表数据
   onMounted(() => {
     getLevel()
   })
 
+  //获取等级数据，渲染响应式
   const getLevel = async () => {
     let result = await requestHospitalLevelOrRegion('HosType')
     levelList.value = result.data
   }
 
+  //修改高亮显示效果
   const changeLightFlag = (value) => {
     levelLightFlag.value = value
   }

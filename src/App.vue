@@ -1,9 +1,11 @@
 <template>
   <div class="container">
+    <!-- 全局头部导航栏 -->
     <HospitalTop></HospitalTop>
     <div class="content">
       <router-view></router-view>
     </div>
+    <!-- 全局底部信息栏 -->
     <HospitalBottom></HospitalBottom>
   </div>
 </template>
