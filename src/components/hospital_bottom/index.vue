@@ -2,7 +2,7 @@
   <div class="bottom">
     <div class="content">
       <div class="left">
-        鲁ICP备 XXXXXXXX 电话号码1XXXXXXXXXX
+        鲁ICP备 123456789 电话号码13333333333
       </div>
       <div class="right">
         <span>联系我们</span>

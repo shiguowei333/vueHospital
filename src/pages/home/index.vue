@@ -9,9 +9,10 @@
       <el-col :span="20">
         <Level @getHospitalLevel="getHospitalLevel"></Level>
         <Region @getHospitalRegion="getHospitalRegion"></Region>
-        <div class="cardList">
+        <div class="cardList" v-if="hospitalInfoArr.length > 0">
           <Card v-for="(item) in hospitalInfoArr" :key="item.id" class="item" :hospitalInfo="item"></Card>
         </div>
+        <el-empty v-else description="暂无数据" />
         <!-- 分页器 -->
         <div class="demo-pagination-block">
           <el-pagination
@@ -69,11 +70,13 @@
   //子组件自定义事件获取医院等级
   const getHospitalLevel = (level) => {
     hostype.value = level
+    getHospitalInfo()
   }
 
   //子组件自定义事件获取医院地区编码
   const getHospitalRegion = (code) => {
     districtCode.value = code
+    getHospitalInfo()
   }
 </script>
 

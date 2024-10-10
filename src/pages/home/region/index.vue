@@ -19,7 +19,7 @@
   import { ref, onMounted } from 'vue'
 
   //获取自定义事件触发函数
-  const $emit = defineEmits(['getHospitalLevel'])
+  const $emit = defineEmits(['getHospitalRegion'])
 
   const regionlList = ref([])
 
