@@ -19,7 +19,7 @@
     flex-direction: column;
     align-items: center;
     .content {
-      width: 70%;
+      width: 80%;
       margin-top: 70px;
     }
   }
