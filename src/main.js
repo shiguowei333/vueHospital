@@ -14,9 +14,16 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 //引入组件中文设置
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
+//引入UI图标组件
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 //创建根组件实例
 const app = createApp(App)
+
+//注册图标组件
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 
 //全局注册组件
 app.component('HospitalTop', HospitalTop)
