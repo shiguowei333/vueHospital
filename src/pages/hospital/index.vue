@@ -6,7 +6,7 @@
         <el-breadcrumb-item style="font-size: 16px; color: #7f7f7f;">医院信息</el-breadcrumb-item>
       </el-breadcrumb>
       <el-menu
-        default-active="2"
+        :default-active="$route.path"
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose"
@@ -46,8 +46,7 @@
   let $route = useRoute()
 
   const changeRouter = (path) => {
-    $router.push(path)
-    console.log($route.query)
+    $router.push({path,query:{hoscode:$route.query.hoscode}})
   }
 </script>
 
