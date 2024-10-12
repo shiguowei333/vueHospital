@@ -1,16 +1,4 @@
-// 引入defineStore用于创建store
-import {defineStore} from 'pinia'
+import { createPinia } from 'pinia'
 
-// 定义并暴露一个store
-export const useCountStore = defineStore('hospital',{
-    // 动作
-    actions:{},
-    // 状态
-    state(){
-      return {
-        sum:6
-      }
-    },
-    // 计算
-    getters:{}
-  })
+// 对外暴露大仓库
+export default createPinia()

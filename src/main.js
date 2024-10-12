@@ -10,7 +10,7 @@ import HospitalBottom from '@/components/hospital_bottom/index.vue'
 import router from '@/router'
 
 //引入pinia
-import { createPinia } from 'pinia'
+import pinia from '@/store'
 
 //引入UI组件库
 import ElementPlus from 'element-plus'
@@ -23,8 +23,6 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 //创建根组件实例
 const app = createApp(App)
 
-//创建pinia
-const pinia = createPinia()
 
 //注册图标组件
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
@@ -41,6 +39,7 @@ app.use(ElementPlus, {
   locale: zhCn,
 })
 app.use(ElementPlus)
+//使用pinia
 app.use(pinia)
 
 //根组件实例绑定页面
