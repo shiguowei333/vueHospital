@@ -35,7 +35,7 @@
   }
 
   const goDetail = (item) => {
-    $router.push({path: '/hospital'})
+    $router.push({path: '/hospital/register',query:{hoscode:item.hoscode}})
   }
 </script>
 

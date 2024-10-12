@@ -23,12 +23,12 @@
   
 <script setup>
   import { useRouter } from 'vue-router'
-  defineProps(['hospitalInfo'])
+  const props = defineProps(['hospitalInfo'])
 
   const $router = useRouter()
 
   const goDetail = () => {
-    $router.push({path: '/hospital'})
+    $router.push({path: '/hospital/register',query:{hoscode:props.hospitalInfo.hoscode}})
   }
 </script>
   
