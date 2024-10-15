@@ -92,6 +92,7 @@
             flex: 1;
             div {
               margin-left:20px;
+              line-height: 25px;
             }
             .time,.address,.route,.releaseTime,.rule,.ruleInfo {
               margin-top: 20px;

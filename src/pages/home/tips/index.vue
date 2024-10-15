@@ -66,7 +66,7 @@
   
 </script>
   
-<style>
+<style scoped lang="less">
   .tips {
     color: #7f7f7f;
     .header {
