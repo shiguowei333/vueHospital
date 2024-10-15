@@ -54,6 +54,7 @@
 
   onMounted(() => {
     detailStore.getHospital($route.query.hoscode)
+    detailStore.getDeparment($route.query.hoscode)
   })
 
 </script>

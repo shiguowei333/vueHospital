@@ -3,3 +3,5 @@ import request from "@/utils/request";
 
 //获取医院详情信息
 export const requestHospitalInfo =  (hoscode) => request.get(`hosp/hospital/${hoscode}`)
+//获取医院科室信息
+export const requestHospitalDeparment = (hoscode) => request.get(`hosp/hospital/department/${hoscode}`)
