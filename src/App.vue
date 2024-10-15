@@ -18,7 +18,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
     .content {
+      flex: 1;
       width: 80%;
       margin-top: 75px;
     }

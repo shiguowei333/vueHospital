@@ -1,11 +1,32 @@
 <template>
-    <div class="search">查询/取消</div>
+    <div class="close">
+        <div class="info">
+            <h1>{{ hospitalName }}查询信息</h1>
+            <el-empty description="暂无数据" />
+        </div>
+    </div>
 </template>
     
 <script setup>
-    
+    import useDetailStore from '@/store/modules/hospitalDetail.js'
+    import { ref, watch } from 'vue'
+    let hospitalStore = useDetailStore()
+    let hospitalName = ref('')
+
+    watch(() => hospitalStore.hospitalInfo,(value) => {
+      if(value.hospital) {
+        hospitalName.value = value.hospital.hosname
+      }
+    },{
+      immediate: true
+    })
 </script>
     
-<style>
-    
+<style scoped lang="less">
+    .info {
+        h1 {
+            font-size: 30px;
+            text-align: center;
+        }
+    }
 </style>
