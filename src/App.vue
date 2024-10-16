@@ -7,6 +7,7 @@
     </div>
     <!-- 全局底部信息栏 -->
     <HospitalBottom></HospitalBottom>
+    <login/>
   </div>
 </template>
 
