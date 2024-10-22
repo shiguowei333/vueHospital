@@ -5,7 +5,7 @@ import '@/assets/css/reset.css'
 //引入全局组件
 import HospitalTop from '@/components/hospital_top/index.vue'
 import HospitalBottom from '@/components/hospital_bottom/index.vue'
-import login from '@/components/login/index.vue'
+import Login from '@/components/login/index.vue'
 
 //引入vue-router
 import router from '@/router'
@@ -33,7 +33,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 //全局注册组件
 app.component('HospitalTop', HospitalTop)
 app.component('HospitalBottom', HospitalBottom)
-app.component('login',login)
+app.component('Login',Login)
 
 //插件配置，路由插件、UI组件库、UI组件中文插件
 app.use(router)
