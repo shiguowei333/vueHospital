@@ -41,7 +41,7 @@
             <div class="showDeparment" v-for="deparment in hospitalDeparment" :key="deparment.depcode">
               <h1 class="cur">{{ deparment.depname }}</h1>
               <ul>
-                <li v-for="(item) in deparment.children" :key="item.depcode">{{ item.depname }}</li>
+                <li v-for="(item) in deparment.children" :key="item.depcode" @click="showLogin">{{ item.depname }}</li>
               </ul>
             </div>
           </div>
@@ -52,6 +52,9 @@
 <script setup>
     import useDetailStore from '@/store/modules/hospitalDetail.js'
     import { ref, watch } from 'vue'
+    import userUserStore from '@/store/modules/user'
+
+    let userStore = userUserStore()
     let hospitalStore = useDetailStore()
     let hospitalInfo = ref({hosname:'',hostypeString:'',logoData:'',releaseTime:'',stopTime:'',fullAddress:'',route:'',quitTime:'',rule:[]})
     let hospitalDeparment = ref([])
@@ -62,6 +65,10 @@
       currentIndex.value = index
       let allH1 = document.querySelectorAll('.cur')
       allH1[currentIndex.value].scrollIntoView({behavior:'smooth'})
+    }
+
+    const showLogin = () => {
+      userStore.visiable = true
     }
 
     watch(() => hospitalStore.hospitalInfo,(value) => {
