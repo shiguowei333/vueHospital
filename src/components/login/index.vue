@@ -8,13 +8,13 @@
                                 <div v-show="scene == 0">
                                   <el-form>
                                     <el-form-item>
-                                        <el-input placeholder="请输入您的手机号码" :prefix-icon="User"></el-input>
+                                        <el-input placeholder="请输入您的手机号码" :prefix-icon="User" v-model="loginPhone"></el-input>
                                     </el-form-item>
                                     <el-form-item>
-                                        <el-input placeholder="请输入手机验证码" :prefix-icon="Lock"></el-input>
+                                        <el-input placeholder="请输入手机验证码" :prefix-icon="Lock" v-model="loginCode"></el-input>
                                     </el-form-item>
                                     <el-form-item>
-                                        <el-button>获取验证码</el-button>
+                                        <el-button :disabled="isPhone" @click="getCode">获取验证码</el-button>
                                     </el-form-item>
                                     </el-form>
                                     <el-button style="width: 100%;" type="primary" size="default">用户登录</el-button>
@@ -62,13 +62,30 @@
 <script setup>
     import userUserStore from '@/store/modules/user'
     import { User,Lock } from '@element-plus/icons-vue'
-    import { ref } from 'vue'
+    import { ref,computed } from 'vue'
 
     let userStore = userUserStore()
     let scene =ref(0)
+    //收集手机号码
+    let loginPhone = ref('')
+    let loginCode = ref('')
+
+    let isPhone = computed(() => {
+      const reg = /^0?(13|14|15|17|18|19)[0-9]{9}$/
+      return !(reg.test(loginPhone.value))
+    })
 
     const changeScene = () => {
       scene.value = 1
+    }
+
+    const getCode = async () => {
+      try {
+        await userStore.getCode(loginPhone.value)
+        loginCode.value = userStore.code
+      } catch (error) {
+        
+      }
     }
 </script>
     
