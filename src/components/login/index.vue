@@ -14,7 +14,10 @@
                                         <el-input placeholder="请输入手机验证码" :prefix-icon="Lock" v-model="loginCode"></el-input>
                                     </el-form-item>
                                     <el-form-item>
-                                        <el-button :disabled="isPhone" @click="getCode">获取验证码</el-button>
+                                        <el-button :disabled="isPhone || isTime" @click="getCode">
+                                          <span v-if="showFlag">获取验证码({{num}})</span>
+                                          <span v-else>获取验证码</span>
+                                        </el-button>
                                     </el-form-item>
                                     </el-form>
                                     <el-button style="width: 100%;" type="primary" size="default">用户登录</el-button>
@@ -69,6 +72,10 @@
     //收集手机号码
     let loginPhone = ref('')
     let loginCode = ref('')
+    let showFlag = ref(false)
+
+    let isTime = ref(false)
+    let num = ref(5)
 
     let isPhone = computed(() => {
       const reg = /^0?(13|14|15|17|18|19)[0-9]{9}$/
@@ -80,6 +87,17 @@
     }
 
     const getCode = async () => {
+      showFlag.value = true
+      isTime.value = true
+      num.value = 5
+      let timer = setInterval(() => {
+        num.value -= 1
+        if(num.value == 0) {
+          clearInterval(timer)
+          showFlag.value = false
+          isTime.value = false
+        }
+      }, 1000)
       try {
         await userStore.getCode(loginPhone.value)
         loginCode.value = userStore.code
