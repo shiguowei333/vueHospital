@@ -7,3 +7,5 @@ export const requestHospitalInfo =  (hoscode) => request.get(`hosp/hospital/${ho
 export const requestHospitalDeparment = (hoscode) => request.get(`hosp/hospital/department/${hoscode}`)
 //获取手机验证码
 export const requestSMS = (phone) => request.get(`/sms/send/${phone}`)
+//用户登录接口
+export const requestLogin = (data) => request.post(`/user/login`,data)
