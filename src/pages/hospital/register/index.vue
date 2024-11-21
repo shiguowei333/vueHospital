@@ -41,7 +41,7 @@
             <div class="showDeparment" v-for="deparment in hospitalDeparment" :key="deparment.depcode">
               <h1 class="cur">{{ deparment.depname }}</h1>
               <ul>
-                <li v-for="(item) in deparment.children" :key="item.depcode" @click="showLogin">{{ item.depname }}</li>
+                <li v-for="(item) in deparment.children" :key="item.depcode" @click="showLogin(item)">{{ item.depname }}</li>
               </ul>
             </div>
           </div>
@@ -53,7 +53,10 @@
     import useDetailStore from '@/store/modules/hospitalDetail.js'
     import { ref, watch } from 'vue'
     import userUserStore from '@/store/modules/user'
+    import { useRouter,useRoute } from 'vue-router'
 
+    let $router = useRouter()
+    let $route = useRoute()
     let userStore = userUserStore()
     let hospitalStore = useDetailStore()
     let hospitalInfo = ref({hosname:'',hostypeString:'',logoData:'',releaseTime:'',stopTime:'',fullAddress:'',route:'',quitTime:'',rule:[]})
@@ -67,8 +70,9 @@
       allH1[currentIndex.value].scrollIntoView({behavior:'smooth'})
     }
 
-    const showLogin = () => {
-      userStore.visiable = true
+    const showLogin = (item) => {
+      console.log(item)
+      $router.push({path:'/hospital/register_step1',query:{hoscode:$route.query.hoscode,depcode:item.depcode}})
     }
 
     watch(() => hospitalStore.hospitalInfo,(value) => {
