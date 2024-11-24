@@ -9,3 +9,5 @@ export const requestHospitalDeparment = (hoscode) => request.get(`hosp/hospital/
 export const requestSMS = (phone) => request.get(`/sms/send/${phone}`)
 //用户登录接口
 export const requestLogin = (data) => request.post(`/user/login`,data)
+//科室挂号信息接口
+export const requestHospitalWork = (number, limit, hoscode, depcode) => request.post(`/hosp/hospital/auth/getBookingScheduleRule/${number}/${limit}/${hoscode}/${depcode}`)

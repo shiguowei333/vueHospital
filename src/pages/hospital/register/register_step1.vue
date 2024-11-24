@@ -21,7 +21,27 @@
 </template>
     
 <script setup>
+  import { onMounted,ref } from 'vue'
+  import { requestHospitalWork } from '@/api/hospital'
+  import { useRoute } from 'vue-router'
 
+  let $route = useRoute()
+
+  let pageNo = ref(1)
+  let limit = ref(6)
+
+  let workData = ref({})
+  // 组件挂载完毕发送请求
+  onMounted(() => {
+    fetchWorkData()
+  })
+
+  const fetchWorkData =async () => {
+    let result = await requestHospitalWork(pageNo.value,limit.value,$route.query.hoscode,$route.query.depcode)
+    if(result.code == 200){
+      workData.value = result.data
+    }
+  }
 </script>
     
 <style scoped lang="less">
